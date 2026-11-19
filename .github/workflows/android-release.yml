@@ -1,3 +1,4 @@
+
 name: Manual Android Release APK
 
 on:
@@ -9,6 +10,7 @@ permissions:
 jobs:
   build-release:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -25,6 +27,44 @@ jobs:
           channel: stable
           cache: true
 
+      # FIX: Prevent duplicate generateLockfiles task
+      - name: Patch Flutter Gradle duplicate task
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+
+          flutter = Path(shutil.which("flutter")).resolve()
+          sdk = flutter.parent.parent
+
+          target = sdk / "packages/flutter_tools/gradle/src/main/kotlin/FlutterPlugin.kt"
+
+          if not target.exists():
+              raise SystemExit(f"FlutterPlugin.kt not found: {target}")
+
+          source = target.read_text()
+
+          signature = "private fun addTaskForLockfileGeneration(rootProject: Project) {"
+          guard = 'if (rootProject.tasks.findByName("generateLockfiles") != null) return'
+
+          if guard in source:
+              print("Duplicate task guard already exists.")
+          else:
+              if signature not in source:
+                  raise SystemExit("Flutter function signature not found. SDK patch aborted.")
+
+              source = source.replace(
+                  signature,
+                  signature + "\n    " + guard,
+                  1
+              )
+
+              target.write_text(source)
+              print("Flutter duplicate task patch applied.")
+
+          PY
+
       - name: Install dependencies
         run: flutter pub get
 
@@ -37,3 +77,4 @@ jobs:
           name: Vokra-Android-1.0.0-Release
           path: build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
+          
