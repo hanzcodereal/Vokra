@@ -1,42 +1,43 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+
+    // Kotlin sudah tersedia secara bawaan di AGP 9.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
     namespace = "com.dark.ZSNZ"
+
     compileSdk = 36
     ndkVersion = "27.0.12077973"
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
         isCoreLibraryDesugaringEnabled = true
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-
-    dependencies {
-        coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     }
 
     defaultConfig {
         applicationId = "com.dark.ZSNZ"
-        minSdk = flutter.minSdkVersion                         // ✅ ganti di sini
+
+        minSdk = flutter.minSdkVersion
         targetSdk = 36
+
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
     buildTypes {
         release {
-            // Release APK memakai konfigurasi signing produksi dari lingkungan build.
+            // Konfigurasi release.
         }
     }
+}
+
+dependencies {
+    coreLibraryDesugaring(
+        "com.android.tools:desugar_jdk_libs:2.0.4"
+    )
 }
 
 flutter {
