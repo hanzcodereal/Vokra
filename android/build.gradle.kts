@@ -1,49 +1,51 @@
-import org.gradle.api.JavaVersion
+
+import com.android.build.api.dsl.ApplicationExtension
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("dev.flutter.flutter-gradle-plugin")
+}
+
+extensions.configure<ApplicationExtension> {
+    namespace = "com.dark.ZSNZ"
+    compileSdk = 36
+    ndkVersion = "27.0.12077973"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
+    }
+
+    defaultConfig {
+        applicationId = "com.dark.ZSNZ"
+        minSdk = flutter.minSdkVersion
+        targetSdk = 36
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        getByName("release") {
+        }
     }
 }
 
-val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
-rootProject.layout.buildDirectory.value(newBuildDir)
-
-subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
-}
-subprojects {
-    project.evaluationDependsOn(":app")
-}
-
-subprojects {
-    plugins.withId("org.jetbrains.kotlin.android") {
-        extensions.findByType(KotlinAndroidProjectExtension::class.java)?.compilerOptions?.jvmTarget?.set(
-            JvmTarget.fromTarget(JavaVersion.VERSION_17.toString())
-        )
-    }
-
-    plugins.withId("org.jetbrains.kotlin.jvm") {
-        extensions.findByType(KotlinJvmProjectExtension::class.java)?.compilerOptions?.jvmTarget?.set(
-            JvmTarget.fromTarget(JavaVersion.VERSION_17.toString())
-        )
-    }
-
-    tasks.withType(KotlinCompile::class.java).configureEach {
-        compilerOptions.jvmTarget.set(
-            JvmTarget.fromTarget(
-                JavaVersion.VERSION_17.toString()
-            )
-        )
+extensions.configure<KotlinAndroidProjectExtension> {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
-tasks.register<Delete>("clean") {
-    delete(rootProject.layout.buildDirectory)
+dependencies {
+    coreLibraryDesugaring(
+        "com.android.tools:desugar_jdk_libs:2.0.4"
+    )
+}
+
+flutter {
+    source = "../.."
 }
