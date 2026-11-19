@@ -1,3 +1,4 @@
+
 name: vokra
 description: "Vokra Android application"
 publish_to: 'none'
@@ -9,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   http: ^0.13.5
   image_picker: ^1.0.7
   intl: ^0.19.0
@@ -16,15 +18,19 @@ dependencies:
   cupertino_icons: ^1.0.8
   shared_preferences: ^2.2.2
   device_info_plus: ^10.1.0
+
   firebase_core: ^2.14.0
   firebase_messaging: ^14.4.0
   flutter_local_notifications: ^17.2.3
+
   carousel_slider: 4.0.0
   web_socket_channel: ^2.4.0
   network_info_plus: ^4.1.0
   permission_handler: ^11.0.0
   video_player: ^2.9.2
-  font_awesome_flutter: ^10.7.0
+
+  font_awesome_flutter: ^11.0.0
+
   path_provider: ^2.1.1
   share_plus: ^7.0.1
   chewie: ^1.5.2
@@ -38,14 +44,17 @@ dependencies:
   wallpaper_manager_flutter: ^1.0.1
 
 dev_dependencies:
-  flutter_launcher_icons: ^0.13.1 # versi terbaru saat ini
+  flutter_launcher_icons: ^0.13.1
+
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^5.0.0
 
 dependency_overrides:
   firebase_messaging_web:
     path: third_party/firebase_messaging_web_stub
+
   gallery_saver:
     path: vendor_gallery_saver
 
@@ -71,6 +80,8 @@ flutter:
     - family: Orbitron
       fonts:
         - asset: fonts/Orbitron-Regular.ttf
+
     - family: ShareTechMono
       fonts:
         - asset: fonts/ShareTechMono-Regular.ttf
+        
