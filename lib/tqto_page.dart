@@ -381,8 +381,8 @@ class _TqtoPageState extends State<TqtoPage> with SingleTickerProviderStateMixin
                     borderRadius: BorderRadius.circular(18),
                     border: Border.all(color: neonRed.withOpacity(0.4)),
                   ),
-                  child: Icon(
-                    person['icon'] as IconData,
+                  child: FaIcon(
+                    person['icon'] as FaIconData,
                     color: neonRed,
                     size: 28,
                   ),
