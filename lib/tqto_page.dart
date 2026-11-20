@@ -216,7 +216,7 @@ class _TqtoPageState extends State<TqtoPage> with SingleTickerProviderStateMixin
                       ),
                     ],
                   ),
-                  child: const Icon(
+                  child: const FaIcon(
                     FontAwesomeIcons.peopleGroup,
                     color: Colors.white,
                     size: 40,
@@ -287,7 +287,7 @@ class _TqtoPageState extends State<TqtoPage> with SingleTickerProviderStateMixin
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: neonRed.withOpacity(0.3)),
             ),
-            child: const Icon(FontAwesomeIcons.bullhorn, color: Colors.white, size: 24),
+            child: const FaIcon(FontAwesomeIcons.bullhorn, color: Colors.white, size: 24),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -435,7 +435,7 @@ class _TqtoPageState extends State<TqtoPage> with SingleTickerProviderStateMixin
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Icon(FontAwesomeIcons.telegram, size: 10, color: Colors.white70),
+                      FaIcon(FontAwesomeIcons.telegram, size: 10, color: Colors.white70),
                       SizedBox(width: 4),
                       Text(
                         "CONTACT",
@@ -474,7 +474,7 @@ class _TqtoPageState extends State<TqtoPage> with SingleTickerProviderStateMixin
       ),
       child: Column(
         children: <Widget>[
-          const Icon(FontAwesomeIcons.codePullRequest, color: Colors.white54, size: 28),
+          const FaIcon(FontAwesomeIcons.codePullRequest, color: Colors.white54, size: 28),
           const SizedBox(height: 12),
           Text(
             "BUILT WITH DEDICATION",
