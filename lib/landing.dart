@@ -521,7 +521,7 @@ class _LandingPageState extends State<LandingPage>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FaIcon(social['icon'] as IconData, color: social['color'] as Color, size: 16),
+                  FaIcon(social['icon'] as FaIconData, color: social['color'] as Color, size: 16),
                   const SizedBox(width: 8),
                   Text(
                     social['label'] as String,
