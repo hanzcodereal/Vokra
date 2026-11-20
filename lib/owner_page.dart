@@ -244,7 +244,7 @@ class _OwnerPageState extends State<OwnerPage> {
   Widget _buildInput({
     required String label,
     required TextEditingController controller,
-    required IconData icon,
+    required FaIconData icon,
     TextInputType type = TextInputType.text,
   }) {
     return Padding(
@@ -256,7 +256,7 @@ class _OwnerPageState extends State<OwnerPage> {
         decoration: InputDecoration(
           labelText: label,
           labelStyle: TextStyle(color: accentPurple),
-          prefixIcon: Icon(icon, color: accentPurple),
+          prefixIcon: FaIcon(icon, color: accentPurple),
           filled: true,
           fillColor: cardGlass,
           border: OutlineInputBorder(
@@ -278,7 +278,7 @@ class _OwnerPageState extends State<OwnerPage> {
 
   Widget _buildGlassCard({
     required String title,
-    required IconData icon,
+    required FaIconData icon,
     required List<Widget> children,
   }) {
     return Container(
@@ -307,7 +307,7 @@ class _OwnerPageState extends State<OwnerPage> {
                   color: primaryPurple.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(icon, color: accentPurple),
+                child: FaIcon(icon, color: accentPurple),
               ),
               SizedBox(width: 12),
               Text(
