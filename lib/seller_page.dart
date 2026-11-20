@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'api_config.dart';
 
 class SellerPage extends StatefulWidget {
@@ -192,7 +193,7 @@ class _SellerPageState extends State<SellerPage> {
   Widget _buildInput({
     required String label,
     required TextEditingController controller,
-    required IconData icon,
+    required FaIconData icon,
     TextInputType type = TextInputType.text,
     String hint = "",
   }) {
@@ -207,7 +208,7 @@ class _SellerPageState extends State<SellerPage> {
           hintText: hint,
           hintStyle: TextStyle(color: Colors.white38),
           labelStyle: TextStyle(color: accentPurple),
-          prefixIcon: Icon(icon, color: accentPurple),
+          prefixIcon: FaIcon(icon, color: accentPurple),
           filled: true,
           fillColor: cardGlass,
           border: OutlineInputBorder(
@@ -229,7 +230,7 @@ class _SellerPageState extends State<SellerPage> {
 
   Widget _buildGlassCard({
     required String title,
-    required IconData icon,
+    required FaIconData icon,
     required List<Widget> children,
   }) {
     return Container(
@@ -258,7 +259,7 @@ class _SellerPageState extends State<SellerPage> {
                   color: primaryPurple.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(icon, color: accentPurple),
+                child: FaIcon(icon, color: accentPurple),
               ),
               SizedBox(width: 12),
               Text(
@@ -381,22 +382,22 @@ class _SellerPageState extends State<SellerPage> {
                 // SECTION 1: CREATE ACCOUNT
                 _buildGlassCard(
                   title: "CREATE MEMBER",
-                  icon: Icons.person_add_alt_1,
+                  icon: FontAwesomeIcons.userPlus,
                   children: [
                     _buildInput(
                       label: "Username Baru",
                       controller: createUsernameController,
-                      icon: Icons.person,
+                      icon: FontAwesomeIcons.user,
                     ),
                     _buildInput(
                       label: "Password",
                       controller: createPasswordController,
-                      icon: Icons.lock,
+                      icon: FontAwesomeIcons.lock,
                     ),
                     _buildInput(
                       label: "Durasi (Hari)",
                       controller: createDayController,
-                      icon: Icons.calendar_today,
+                      icon: FontAwesomeIcons.calendarDay,
                       type: TextInputType.number,
                       hint: "Maksimal 30 hari",
                     ),
@@ -428,18 +429,18 @@ class _SellerPageState extends State<SellerPage> {
                 // SECTION 2: EDIT / EXTEND DURATION
                 _buildGlassCard(
                   title: "EXTEND DURATION",
-                  icon: Icons.access_time,
+                  icon: FontAwesomeIcons.clock,
                   children: [
                     _buildInput(
                       label: "Username Target",
                       controller: editUsernameController,
-                      icon: Icons.personEdit,
+                      icon: FontAwesomeIcons.userEdit,
                       hint: "Username member yang ingin diperpanjang",
                     ),
                     _buildInput(
                       label: "Tambah Hari",
                       controller: editDayController,
-                      icon: Icons.calendar_month,
+                      icon: FontAwesomeIcons.calendarPlus,
                       type: TextInputType.number,
                       hint: "Maksimal 30 hari",
                     ),
@@ -471,7 +472,7 @@ class _SellerPageState extends State<SellerPage> {
                 // SECTION 3: USER LIST
                 _buildGlassCard(
                   title: "MEMBER LIST",
-                  icon: Icons.persons,
+                  icon: FontAwesomeIcons.users,
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
