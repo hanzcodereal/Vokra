@@ -141,7 +141,7 @@ class ContactPage extends StatelessWidget {
 
   Widget _buildContactButton({
     required String label,
-    required IconData icon,
+    required FaIconData icon,
     required Color color,
     required String url,
   }) {
